@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  redis:
+    image: redis:latest
+  app:
+    environment:
+      - RACK_ENV=production
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis

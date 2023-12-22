@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'redis'
-$redis = Redis.new
+$redis = Redis.new(host: "redis")
 
 # Management UI
 get '/manage' do

@@ -34,7 +34,6 @@
                @focus="qs.cache()">
         <table class="table table-zebra table-sm">
             <tbody>
-            <tr></tr>
             <template x-for="stub in stubs">
                 <tr @deleted="$event.currentTarget.remove()">
                     <td><span class="" x-text="stub['stub']"></span></td>

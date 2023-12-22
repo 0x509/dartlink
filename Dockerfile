@@ -1,12 +1,9 @@
-FROM ubuntu:latest
+FROM ruby:3.2
 LABEL authors="adevireddy"
 
 WORKDIR /app
 COPY . /app
 RUN bundle install
 
-ENV HTTP_PORT 4567
-ENV HTTP_HOST 0.0.0.0
-
-EXPOSE $HTTP_PORT
-CMD ["bundle", "exec", "rackup", "--host ${HTTP_HOST}", "-p ${HTTP_PORT}"]
+EXPOSE 8000
+CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "8000"]

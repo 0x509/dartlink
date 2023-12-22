@@ -1,12 +1,19 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    connection_pool (2.4.1)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.9)
+    puma (6.3.0)
+      nio4r (~> 2.0)
     rack (2.2.8)
     rack-protection (3.1.0)
       rack (~> 2.2, >= 2.2.4)
-    redis-rb (9001.0)
+    redis (5.0.8)
+      redis-client (>= 0.17.0)
+    redis-client (0.19.1)
+      connection_pool
     ruby2_keywords (0.0.5)
     sinatra (3.1.0)
       mustermann (~> 3.0)
@@ -19,7 +26,9 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
-  redis-rb
+  puma
+  rack
+  redis
   sinatra
 
 BUNDLED WITH
