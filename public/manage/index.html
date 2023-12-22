@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="corporate">
+<head>
+    <meta charset="UTF-8">
+    <title>dartlink &middot Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.23/dist/full.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="p-6">
+
+<navbar class="navbar bg-base-100 mb-4">
+    <div class="text-6xl font-bold">
+        dartlink
+    </div>
+</navbar>
+
+<div class="grid grid-cols-10 gap-4">
+    <div class="col-span-7 font-mono" x-data="{
+                stubs: null,
+                getStubs() {
+                    fetch('/api/stubs')
+                        .then((res) => res.json())
+                        .then((json) => this.stubs = json);
+                }
+              }"
+         x-init="getStubs()">
+        <input type="text" name="quicksearch" id="stub_filter" class="input input-bordered w-3/5 input mb-4"
+               placeholder="Search">
+        <table class="table table-zebra table-sm">
+            <tbody>
+            <template x-for="stub in stubs">
+                <tr @deleted="$event.currentTarget.remove()">
+                    <td><span class="" x-text="stub['stub']"></span></td>
+                    <td x-text="stub['url']"></td>
+                    <td>
+                        <button class="btn btn-square btn-xs bg-slate-100 hover:bg-error hover:text-white" @click="fetch('/api/stub/'+stub['stub'].split('/')[0], { method: 'DELETE' })
+    .then(() => $dispatch('deleted'));">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-span-3">
+        <div class="border border-1 border-slate-300 rounded p-3 shadow">
+            <form class="mx-auto" action="/api/stub/new" method="post" @click="console.log('submitted')">
+                <div class="mb-3">
+                    <label for="stub" class="block mb-2 text-sm font-medium text-gray-900">Short Link</label>
+                    <input type="text" id="stub" name="stub"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                           placeholder="email" autocomplete="off" required>
+                </div>
+                <div class="mb-3">
+                    <label for="url" class="block mb-2 text-sm font-medium text-gray-900">URL</label>
+                    <input type="text" id="url" name="url"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                           placeholder="https://outlook.com" autocomplete="off" required>
+                </div>
+                <div>
+                    <button class="btn btn-wide btn-primary btn-outline" type="submit">Create link</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
