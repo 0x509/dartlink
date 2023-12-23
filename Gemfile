@@ -3,8 +3,7 @@
 source "https://rubygems.org"
 
 gem "puma"
-gem "rack"
 gem "sinatra"
 gem "redis"
 gem "mustermann"
-gem "mustermann-uri-template"
+# gem "mustermann-uri-template"
