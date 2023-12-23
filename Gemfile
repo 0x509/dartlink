@@ -6,4 +6,5 @@ gem "puma"
 gem "sinatra"
 gem "redis"
 gem "mustermann"
-# gem "mustermann-uri-template"
+
+gem "mustermann-contrib", "~> 3.0"

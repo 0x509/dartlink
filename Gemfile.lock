@@ -2,8 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     connection_pool (2.4.1)
+    hansi (0.2.1)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
+    mustermann-contrib (3.0.0)
+      hansi (~> 0.2.0)
+      mustermann (= 3.0.0)
     nio4r (2.7.0)
     puma (6.4.0)
       nio4r (~> 2.0)
@@ -27,6 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   mustermann
+  mustermann-contrib (~> 3.0)
   puma
   redis
   sinatra
