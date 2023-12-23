@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>dartlink &middot Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.23/dist/full.min.css" rel="stylesheet" type="text/css"/>
-    <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="jquery-3.7.1.slim.min.js"></script>
-    <script src="jquery.quicksearch.min.js"></script>
-    <!--    <link rel="stylesheet" href="build.css">-->
+    <script src="/jquery-3.7.1.slim.min.js"></script>
+    <script src="/jquery.quicksearch.min.js"></script>
+    <link rel="stylesheet" href="tailwind.min.css">
 </head>
 <body class="p-6">
 
@@ -39,7 +37,7 @@
                     <td><span class="" x-text="stub['stub']"></span></td>
                     <td x-text="stub['url']"></td>
                     <td>
-                        <button class="btn btn-square btn-xs bg-slate-100 hover:bg-error hover:text-white" @click="fetch('/api/stub/'+stub['stub'].split('/')[0], { method: 'DELETE' })
+                        <button class="btn btn-square btn-xs bg-slate-100 hover:bg-error hover:text-white" @click="fetch('/api/stub/'+stub['stub'], { method: 'DELETE' })
     .then(() => $dispatch('deleted'));">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor">
